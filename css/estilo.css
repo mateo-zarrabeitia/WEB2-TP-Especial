@@ -1,0 +1,111 @@
+body{
+  padding-top: 70px;
+
+}
+
+dd {
+  margin-left: 5%;
+  font-size: 14px;
+}
+
+dt {
+  font-size: 16px;
+}
+
+#formLogin{
+padding: 80px; min-width:800px;}
+
+.service-single{
+    margin-top: 30px;
+  padding-bottom: 10px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 0 10px #e8e8e8;
+}
+.service-single .box-top{
+  background: #FFA500;
+  padding: 30px;
+  color: #fff;
+}
+.service-single .box-top i{
+  font-size: 50px;
+  padding: 20px 0;
+}
+.service-single .box-top h2{
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 45px;
+}
+.service-single .box-down{
+  max-width: 350px;
+  margin: 0 auto;
+  border-radius: 100%;
+  background: #fff;
+  margin-top: -50px;
+  padding: 50px 25px 10px 25px;
+}
+.service-single .btn-holly{
+    background: #fff;
+	border:1px solid #f0f0f0;
+	border-radius: 20px;
+	color: #FFA500;
+}
+.service-single .btn-holly:hover{
+	background: #FFA500;
+	border-color: #FFA500;
+	color: #fff;
+}
+
+
+
+//LOGIN
+@import "bourbon";
+
+body {
+	background: #eee !important;
+}
+
+.wrapper {
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
