@@ -13,6 +13,7 @@ class ConfigApp{
       'contacto' => 'PizzaController#contacto',
       'admin' => 'AdminController#home',
       'adminLista' => 'AdminController#home',
+      'detalleProducto' => 'PizzaController#producto',
       'login' =>  'LoginController#login',
       'register' => 'LoginController#registrar',
       'crearUsuario' => 'LoginController#crear',
@@ -25,7 +26,9 @@ class ConfigApp{
       'crearCategoria' => 'AdminController#guardarCategoria',
       'crearProducto' => 'AdminController#guardarProducto',
       'borrarCategoria' =>'AdminController#eliminarCategoria',
-      'borrarProducto' =>'AdminController#eliminarProducto'];
+      'borrarProducto' =>'AdminController#eliminarProducto',
+      'borrarImagen' => 'AdminController#eliminarImagen',
+      'filtrarCategoria' => 'PizzaController#filtrado'];
     //  'modificarProducto' =>'AdminController#actualizarProducto'
 
 }

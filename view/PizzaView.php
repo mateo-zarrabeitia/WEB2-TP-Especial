@@ -3,6 +3,9 @@
   {
     function mostrarIndex()
     {
+      session_start();
+      if (isset($_SESSION["USUARIO"]))
+      $this->smarty->assign('usuario',$_SESSION["USUARIO"]);
       return $this->smarty->display('templates/index.tpl');
     }
 
@@ -16,11 +19,21 @@
       return $this->smarty->display('templates/ubicacion.tpl');
     }
 
-    function mostrarMenu($productos,$categorias)
+    function mostrarMenu($productos,$categorias,$imagenes)
     {
       $this->smarty->assign('productos',$productos);
       $this->smarty->assign('categorias',$categorias);
+      $this->smarty->assign('imagenes',$imagenes);
       return $this->smarty->display('templates/menu.tpl');
+    }
+
+    function mostrarProducto($productos)
+    {
+      session_start();
+      if (isset($_SESSION["USUARIO"]))
+      $this->smarty->assign('usuario',$_SESSION["USUARIO"]);
+      $this->smarty->assign('productos',$productos);
+      return $this->smarty->display('templates/producto.tpl');
     }
 
     function mostrarContacto()

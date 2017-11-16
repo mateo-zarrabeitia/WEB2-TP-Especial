@@ -1,5 +1,5 @@
  <?php
- include_once 'database/config.php'; //ARCHIVO DE CONFIGURACION
+ require_once 'database/config.php'; //ARCHIVO DE CONFIGURACION
 
  class Model
  {

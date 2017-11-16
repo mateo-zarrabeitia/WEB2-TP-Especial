@@ -2,14 +2,14 @@
 define('ACTION', 0);
 define('PARAMS', 1);
 
-include_once 'config/ConfigApp.php';
-include_once 'model/Model.php';
-include_once 'view/View.php';
-include_once 'controller/Controller.php';
-include_once 'controller/PizzaController.php';
-include_once 'controller/LoginController.php';
-include_once 'controller/SecuredController.php';
-include_once 'controller/AdminController.php';
+require_once 'config/ConfigApp.php';
+require_once 'model/Model.php';
+require_once 'view/View.php';
+require_once 'controller/Controller.php';
+require_once 'controller/PizzaController.php';
+require_once 'controller/LoginController.php';
+require_once 'controller/SecuredController.php';
+require_once 'controller/AdminController.php';
 
 function ParseURL($url)
 {

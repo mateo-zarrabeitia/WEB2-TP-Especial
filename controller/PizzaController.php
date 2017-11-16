@@ -1,19 +1,23 @@
 <?php
-  include_once 'view/PizzaView.php';
-  include_once 'model/PizzaModel.php';
+  require_once 'view/PizzaView.php';
+  require_once 'model/ProductosModel.php';
+  require_once 'model/CategoriasModel.php';
+  require_once 'model/ImagenesModel.php';
 
   class PizzaController extends Controller
   {
     function __construct()
     {
       $this->view = new PizzaView();
-      $this->model = new PizzaModel();
+      $this->modelProductos = new ProductosModel();
+      $this->modelCategorias = new CategoriasModel();
+      $this->modelImagenes = new ImagenesModel();
     }
 
     public function index()
     {
-      $this->view->mostrarIndex();
-    }
+        $this->view->mostrarIndex();
+      }
 
     public function home()
     {
@@ -27,10 +31,11 @@
 
     public function menu()
     {
-      $productos = $this->model->getProductos();
-      $categorias = $this->model->getCategorias();
-      //print_r($categorias);
-      $this->view->mostrarMenu($productos,$categorias);
+      $productos = $this->modelProductos->getProductos();
+      $categorias = $this->modelCategorias->getCategorias();
+      $imagenes = $this->modelImagenes->getImagenes();
+    //  print_r($imagenes);
+      $this->view->mostrarMenu($productos,$categorias,$imagenes);
     }
 
     public function contacto()
@@ -41,6 +46,24 @@
     public function precios()
     {
       $this->view->mostrarPrecios();
+    }
+
+    public function filtrado()
+    {
+      if(isset($_POST['categoria'])) {
+        $categoria = $_POST['categoria'];
+        $productos = $this->modelProductos->getProductosCat($categoria);
+        $categorias = $this->modelCategorias->getCategorias($categoria);
+        $imagenes = $this->modelImagenes->getImagenes();
+        $this->view->mostrarMenu($productos,$categorias,$imagenes);
+      }
+    }
+
+    public function producto($params)
+    {
+      $id_producto = $params[0];
+      $productos = $this->modelProductos->getProducto($id_producto);
+      $this->view->mostrarProducto($productos);
     }
 
   }

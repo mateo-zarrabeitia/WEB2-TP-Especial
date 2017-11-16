@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <form id="crearProducto" action="crearProducto" method="post" class="form-signin">
+  <form id="crearProducto" action="crearProducto" method="post" class="form-signin" enctype="multipart/form-data">
     <h2 class="form-signin-heading text-center">Agregar Producto</h2>
     <div class="form-group">
               <label for="nombre">Nombre del Producto</label>
@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
               <label for="imagen">Imagen</label>
-              <input type="text" class="form-control" id="imagen" name="imagen" placeholder="images/foto.png" required>
+              <input type="file" id="imagenes" name="imagenes[]" multiple>
     </div>
     <!-- {if !empty($error) }
              <div class="alert alert-danger" role="alert">{$error}</div>

@@ -11,11 +11,10 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a class="navegacionAdmin inicio" href="Lista" >Inicio</a></li>
-          <li><a class="navegacionAdmin agregarProducto" href="AgregarProducto" >Agregar Producto</a></li>
           <li><a class="navegacionAdmin listaProducto" href="ListaProductos" >Lista Productos</a></li>
-          <li><a class="navegacionAdmin agregarCategoria" href="AgregarCategoria" >Agregar Categoria</a></li>
+          <li><a class="navegacionAdmin agregarProducto" href="AgregarProducto" >Agregar Producto</a></li>
           <li><a class="navegacionAdmin listaCategoria" href="ListaCategorias" >Lista Categorias</a></li>
+          <li><a class="navegacionAdmin agregarCategoria" href="AgregarCategoria" >Agregar Categoria</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="logout"><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

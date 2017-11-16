@@ -1,13 +1,9 @@
 <?php
-  include_once 'view/AdminView.php';
-  include_once 'model/AdminModel.php';
+  require_once 'view/AdminView.php';
+  require_once 'model/AdminModel.php';
 
-  class AdminController extends SecuredController
-
-  {
-    private $styleModel;
-    function __construct()
-    {
+  class AdminController extends SecuredController {
+    function __construct()  {
       parent::__construct();
       $this->view = new AdminView();
       $this->model = new AdminModel();
@@ -17,8 +13,9 @@
     {
       $productos = $this->model->getProductos();
       $categorias = $this->model->getCategorias();
+      $imagenes = $this->model->getImagenes();
     //print_r($producto);
-      $this->view->mostrarAdmin($productos,$categorias);
+      $this->view->mostrarAdmin($productos,$categorias,$imagenes);
       //header('Location: '. HOME .'admin');
     }
 
@@ -26,6 +23,8 @@
       home();
       header('Location: '. HOME .'admin');
     }
+
+
 
     public function agregarCategoria()
     {
@@ -36,14 +35,15 @@
     public function agregarProducto()
     {
   		$categorias = $this->model->getCategorias();
-      // print_r($categoria);
       $this->view->mostrarAgregarProducto($categorias);
     }
 
     public function listaProducto()
     {
       $productos = $this->model->getProductos();
-      $this->view->mostrarListarProducto($productos);
+      $categorias = $this->model->getCategorias();
+      $imagenes = $this->model->getImagenes();
+      $this->view->mostrarListarProducto($productos,$categorias,$imagenes);
     }
 
     public function listaCategoria(){
@@ -60,14 +60,27 @@
       header('Location: '. HOME .'admin');
     }
 
+    private function sonExtValida($imagenesTipos){
+      foreach ($imagenesTipos as $tipo) {
+        if(($tipo == 'image/jpeg') || ($tipo == 'image/png')) {
+          return true;
+        }
+      }
+      return false;
+    }
+
     public function guardarProducto(){
+      $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
       $nombre = $_POST['nombre'];
       $id_categoria = $_POST['id_categoria'];
       $precio = $_POST['precio'];
       $descripcion = $_POST['descripcion'];
-      $imagenes= $_POST['imagen'];
-      $this->model->guardarProducto($id_categoria,$nombre,$precio,$descripcion,$imagenes);
-      $this->view->mostrarAgregarProducto();
+      if($this->sonExtValida($_FILES['imagenes']['type'])) {
+        echo "SE GUARDO";
+        $this->model->guardarProducto($id_categoria,$nombre,$precio,$descripcion,$rutaTempImagenes);
+      }
+      echo "NO SE GUARDO";
+      die();
       header('Location: '. HOME .'admin');
     }
 
@@ -85,12 +98,19 @@
       header('Location: '. HOME .'admin');
     }
 
-    // public function actualizarProducto($params){
-    //   $id_producto = $params[0];
-    //   $productos = $this->model->getProductos();
-		// 	$this->model->actualizarProducto($id_producto,$productos);
-    //   header('Location: '. HOME .'admin');
-    // }
+    public function eliminarImagen($params){
+      $id_imagen = $params[0];
+      //echo ($id_categoria);
+			$this->model->deleteImagen($id_imagen);
+      header('Location: '. HOME .'admin');
+    }
+
+    public function actualizarProducto($params = []){
+      $id_producto = $params[0];
+      $productos = $this->model->getProductos();
+			$this->model->actualizarProducto($id_producto,$productos);
+      header('Location: '. HOME .'admin');
+    }
 
 
 
