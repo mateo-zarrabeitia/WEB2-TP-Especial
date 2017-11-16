@@ -27,7 +27,6 @@ $(document).ready(function() {
         event.preventDefault();
           let id = $(this).attr("name")
           let dir = $(this).attr("href")
-          alert(window.location.origin + window.location.pathname+dir+id);
           $.ajax({
             "url" : window.location.origin + window.location.pathname+dir+id,
             "method" : "GET",
@@ -42,7 +41,6 @@ $(document).ready(function() {
         $(".filtrado").submit(function(event){
           event.preventDefault();
           let dir = $(this).attr("href")
-          alert( window.location.origin + window.location.pathname+dir)
           $.ajax({
             "url" : window.location.origin + window.location.pathname+dir,
             "method" : "GET",
@@ -70,7 +68,6 @@ $(document).ready(function() {
   }
 
   function cargarComentarios(id){
-      alert(window.location.origin+"/trabajo/api/comentarios/producto/"+id)
       $.ajax("api/comentarios/producto/"+id)
       .done(function(comentarios) {
         console.log(comentarios);

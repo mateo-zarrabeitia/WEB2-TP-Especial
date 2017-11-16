@@ -27,12 +27,13 @@
       return $this->smarty->display('templates/menu.tpl');
     }
 
-    function mostrarProducto($productos)
+    function mostrarProducto($productos,$imagenes)
     {
       session_start();
       if (isset($_SESSION["USUARIO"]))
       $this->smarty->assign('usuario',$_SESSION["USUARIO"]);
       $this->smarty->assign('productos',$productos);
+      $this->smarty->assign('imagenes',$imagenes);
       return $this->smarty->display('templates/producto.tpl');
     }
 

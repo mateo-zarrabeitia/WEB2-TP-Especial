@@ -63,7 +63,8 @@
     {
       $id_producto = $params[0];
       $productos = $this->modelProductos->getProducto($id_producto);
-      $this->view->mostrarProducto($productos);
+      $imagenes = $this->modelImagenes->getImagenes();
+      $this->view->mostrarProducto($productos,$imagenes);
     }
 
   }
