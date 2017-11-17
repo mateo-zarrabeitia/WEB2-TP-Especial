@@ -1,12 +1,15 @@
 <?php
   require_once 'view/AdminView.php';
   require_once 'model/AdminModel.php';
+  require_once 'model/UsuariosModel.php';
 
   class AdminController extends SecuredController {
     function __construct()  {
       parent::__construct();
       $this->view = new AdminView();
       $this->model = new AdminModel();
+      $this->modelUsuarios = new UsuariosModel();
+
     }
 
     public function home()
@@ -50,6 +53,17 @@
       $categorias = $this->model->getCategorias();
       $this->view->mostrarListarCategoria($categorias);
 
+    }
+
+    public function adminUsuarios(){
+      $usuarios = $this->modelUsuarios->getUsuarios();
+      $this->view->mostrarUsuarios($usuarios);
+    }
+    public function darPermisoAdmin($params){
+      $id_usuario = $params[0];
+      $permiso = $params[1];
+      $usuarios = $this->modelUsuarios->setPermisoAdmin($id_usuario,$permiso);
+      header('Location: '. HOME .'admin');
     }
 
     public function guardarCategoria(){

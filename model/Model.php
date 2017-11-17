@@ -12,7 +12,7 @@
 
        $this->db = new PDO('mysql:host='.HOST.';'.'dbname='.DBNAME.';charset=utf8', USUARIO, DBPASS);
      } catch (PDOException $e) {
-       buildDDBBfromFile(DBNAME, 'database/basepizzeria.sql'); //ARCHIVO EXPORTADO DE LA BASE
+       buildDDBBfromFile(DBNAME, 'model/database/basepizzeria.sql'); //ARCHIVO EXPORTADO DE LA BASE
      }
 
    }

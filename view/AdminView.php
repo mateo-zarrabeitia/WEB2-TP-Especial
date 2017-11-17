@@ -40,6 +40,12 @@
       return $this->smarty->display('templates/Admin/AdminListarCategorias.tpl');
     }
 
+    function mostrarUsuarios($usuarios)
+    {
+      $this->smarty->assign('usuarios',$usuarios);
+      $this->smarty->display('templates/Admin/Usuarios.tpl');
+    }
+
     function mostrarProducto($productos)
     {
       $this->smarty->assign('productos',$productos);

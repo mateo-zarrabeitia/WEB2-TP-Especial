@@ -21,7 +21,8 @@
           {if !isset($usuario)}
           <li class="login"><a href="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
           {else}
-          <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> <strong>{$usuario}</strong></p></li>
+            {if ({$usuario['ADMIN']} == 1)}<li><a href="admin">Panel Admin</a></li> {/if}
+          <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> <strong>{$usuario['USUARIO']}</strong></p></li>
           <li class="logout"><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
           {/if}
         </ul>

@@ -34,8 +34,8 @@
       $productos = $this->modelProductos->getProductos();
       $categorias = $this->modelCategorias->getCategorias();
       $imagenes = $this->modelImagenes->getImagenes();
-    //  print_r($imagenes);
-      $this->view->mostrarMenu($productos,$categorias,$imagenes);
+      $filtro = 1;
+      $this->view->mostrarMenu($productos,$categorias,$imagenes,$filtro);
     }
 
     public function contacto()
@@ -48,14 +48,20 @@
       $this->view->mostrarPrecios();
     }
 
-    public function filtrado()
+    public function filtrado($params)
     {
-      if(isset($_POST['categoria'])) {
-        $categoria = $_POST['categoria'];
-        $productos = $this->modelProductos->getProductosCat($categoria);
-        $categorias = $this->modelCategorias->getCategorias($categoria);
+      if ($params[0] == "todas") {
+        $productos = $this->modelProductos->getProductos();
+        $categorias = $this->modelCategorias->getCategorias();
         $imagenes = $this->modelImagenes->getImagenes();
-        $this->view->mostrarMenu($productos,$categorias,$imagenes);
+        $filtro = 0;
+        $this->view->mostrarMenu($productos,$categorias,$imagenes,$filtro);
+      } else {
+        $id_categoria = $params[0];
+        $nombre_categoria =  $params[1];
+        $productos = $this->modelProductos->getProductosCat($id_categoria);
+        $imagenes = $this->modelImagenes->getImagenes();
+        $this->view->mostrarMenuFiltrado($productos,$id_categoria,$nombre_categoria,$imagenes);
       }
     }
 

@@ -15,8 +15,10 @@
           <li><a class="navegacionAdmin agregarProducto" href="AgregarProducto" >Agregar Producto</a></li>
           <li><a class="navegacionAdmin listaCategoria" href="ListaCategorias" >Lista Categorias</a></li>
           <li><a class="navegacionAdmin agregarCategoria" href="AgregarCategoria" >Agregar Categoria</a></li>
+          <li><a class="navegacionAdmin administrarUsuarios" href="Usuarios" >Administrar Usuarios</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="indexHome"><span class="navegacionAdmin index"></span> Inicio Pizzeria</a></li>
           <li class="logout"><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>

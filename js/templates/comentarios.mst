@@ -1,14 +1,16 @@
-
 {{#arreglo}}
-                   <div class="comments-list">
-                       <div id="comentario{{fk_id_producto}}" class="media">
-                           <p class="pull-right"><small>{{fecha}}</small></p>
-                            <div class="media-body">
-                              <h4 class="media-heading user_name">{{fk_id_usuario}}</h4>
-                            	{{comentario}}
-                            </div>
-                          </div>
-
-                   </div>
-
+ <div class="comments-list">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comentario de: {{email}}</h3>
+          <div class="pull-rigth">
+            <p class="pull-right"><small>{{fecha}}</small></p>
+          </div>
+      </div>
+      <div class="panel-body">
+        {{comentario}}
+        <p class="pull-right">{{puntaje}}<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></p>
+      </div>
+    </div>
+ </div>
 {{/arreglo}}

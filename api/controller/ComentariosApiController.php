@@ -1,5 +1,6 @@
 <?php
     require_once('../model/ComentariosModel.php');
+    require_once('../model/UsuariosModel.php');
     require_once('Api.php');
 
     class ComentariosApiController extends Api {
@@ -8,6 +9,8 @@
         function __construct() {
             parent::__construct();
             $this->model = new ComentariosModel();
+            $this->modelUsuarios = new UsuariosModel();
+
         }
 
         public function getComentarios($url_params = []) {
@@ -40,15 +43,17 @@
 
         public function createComentario() {
     	    $body = json_decode($this->raw_data);
-
+          $email = $body->email;
           $fk_id_producto = $body->fk_id_producto;
-    	    $fk_id_usuario = $body->fk_id_usuario;
-    	    $textocomentario = $body->comentario;
+    	    $usuario =  $this->modelUsuarios->getIdEmailUser($email);
+          $fk_id_usuario = $usuario['id_usuario'];
+          $textocomentario = $body->comentario;
           $puntaje = $body->puntaje;
           $fecha = date();
-    	    $comentario = $this->model->setComentario($fk_id_producto,$fk_id_usuario, $textocomentario, $puntaje, $fecha);
-
-    	    return $this->json_response($comentario, 200);
+          // return $fk_id_usuario;
+          // die();
+    	    $this->model->setComentario($fk_id_producto,$fk_id_usuario, $textocomentario, $puntaje, $fecha);
+          return $this->json_response("Se ha Creado", 200);
         }
 
         public function deleteComentario($url_params = []) {

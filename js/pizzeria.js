@@ -33,12 +33,19 @@ $(document).ready(function() {
             "data-type" : "HTML",
             success: function(textoCargado, status){
               cargarComentarios(id);
+              let repeticion = window.setInterval("refreshComentarios",2000);
+              // setTimeout('refreshComentarios',2000);
+              // setInterval('refreshComentarios',2000);
               $(".contenido").html(textoCargado);
               $( "li" ).removeClass( "active" );
+              $(".comentar").submit(function(event){
+                  event.preventDefault();
+                  guardarComentario();
+              });
             }
           });
         });
-        $(".filtrado").submit(function(event){
+        $(".filtrado").on("click", function(event){
           event.preventDefault();
           let dir = $(this).attr("href")
           $.ajax({
@@ -46,8 +53,23 @@ $(document).ready(function() {
             "method" : "GET",
             "data-type" : "HTML",
             success: function(textoCargado, status){
-              $(".contenido").html(textoCargado);
-              $( "li" ).removeClass( "active" );
+              $(".productos").html(textoCargado);
+              $(".navegacionFiltrado").on("click", function(event){
+              event.preventDefault();
+                let id = $(this).attr("name")
+                let dir = $(this).attr("href")
+                alert(window.location.origin + window.location.pathname+dir+id)
+                $.ajax({
+                  "url" : window.location.origin + window.location.pathname+dir+id,
+                  "method" : "GET",
+                  "data-type" : "HTML",
+                  success: function(textoCargado, status){
+                    cargarComentarios(id);
+                    $(".contenido").html(textoCargado);
+                    $( "li" ).removeClass( "active" );
+                  }
+                });
+              });
             }
           });
         });
@@ -60,7 +82,14 @@ $(document).ready(function() {
 
   let templateComentario;
 
-  $.ajax({url: 'trabajo/js/templates/comentarios.mst'}).done(template => templateComentario = template);
+  $.ajax({url: 'js/templates/comentarios.mst'}).done(template => templateComentario = template);
+
+  function refreshComentarios(){
+    let id = $(this).attr("name")
+    alert(id);
+    window.clearInterval(repeticion);
+    cargarComentarios();
+  }
 
   function crearComentario(comentario){
       let rendered = Mustache.render(templateComentario, {arreglo:comentario});
@@ -80,14 +109,39 @@ $(document).ready(function() {
       });
   }
 
+  function guardarComentario() {
+      let comentario ={
+       "fk_id_producto": $('.id_producto').val(),
+       "email": $('.usuario').val(),
+       "comentario": $('.textocomentario').val(),
+       "puntaje": $('.puntaje').val()
+      }
+      // console.log(comentario);
+      $.ajax({
+            method: "POST",
+            url: "api/comentarios",
+            data: JSON.stringify(comentario)
+          })
+        .done(function(data) {
+          console.log(JSON.stringify(comentario));
+        })
+        .fail(function(data) {
+            console.log(data);
+            let time = new Date().toLocaleString();
+            let coment ={
+             "email": $('.usuario').val(),
+             "comentario": $('.textocomentario').val(),
+             "puntaje": $('.puntaje').val(),
+             "fecha" : time
+            }
+            $(".comentarios").empty();
+            cargarComentarios($('.id_producto').val());
+            // crearComentario(coment);
+            $("#formComentario")[0].reset();
+        });
 
 
-
-  $("#filtrado").submit(function (event) {
-     event.preventDefault();
-     let dir = $(this).attr("href");
-
-  });
+  }
 
 
   $(".navegacionAdmin").on("click", function (event) {
@@ -111,52 +165,5 @@ $(document).ready(function() {
   $( "#login" ).submit(function( event ) {
     $('li').siblings('.login').hide();
 });
-
-//Comentarios
-
-// getComments();
-//
-// intervalo = setInterval(getComments, 2000);
-//
-// function getComments(){
-//
-//     $.get( "api/comentarios", function(data) {
-//     let datos = [];
-//     for (let i = 0; i < data.length; i++) {
-//       if (id_producto == data[i].fk_id_producto) {
-//         datos.push(data[i]);
-//       }
-//     }
-//     console.log(datos);
-//     let rendered = Mustache.render(template,{comentarios:datos});
-//     $(".comentarios").html(rendered);
-//
-//   });
-// }
-//
-//
-// //ELIMINAR COMENTARIO
-//  $(document).on('click', '.eliminarComentario', function(ev) {
-//       ev.preventDefault();
-//       var comentario = $(this).parents(".comentario");
-//       var id =  $(this).attr("data-id");
-//       $.ajax({
-//           type: "DELETE",
-//           url: 'api/comentario/' + id,
-//           success: function(){
-//             $(comentario).html("");
-//           }
-//         });
-//
-//       });
-//  //AGREGAR COMENTARIO
-//  $(document).on('submit', '.agregarComentario', function(ev) {
-//     ev.preventDefault();
-//     var comentario = $(this).serialize();
-//     $.post( "api/comentario", comentario, function( comentarios ) {
-//       var rendered = Mustache.render(template,{comentarios});
-//       $( ".comentarios" ).append(rendered);
-//     });
-//   });
 
 });
