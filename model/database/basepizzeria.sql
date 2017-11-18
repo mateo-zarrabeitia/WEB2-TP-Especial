@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2017 a las 03:32:58
+-- Tiempo de generación: 18-11-2017 a las 02:43:36
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -64,16 +64,8 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `fk_id_producto`, `fk_id_usuario`, `comentario`, `puntaje`, `fecha`) VALUES
-(1, 27, 23, 'Me cayo mal el choclo', 3, '2017-11-08 03:00:00'),
-(2, 27, 24, 'Buenisima', 5, '2017-11-30 03:00:00'),
-(4, 30, 23, 'Mucho QUESOOO', 4, '2017-11-23 03:00:00'),
-(42, 27, 23, 'Me cayo mal el choclo q12e13', 4, '0000-00-00 00:00:00'),
-(43, 27, 23, 'Me cayo mal el choclo q12e13', 4, '2017-11-15 22:45:40'),
-(44, 27, 23, 'Me cayo mal el choclo q12e13', 4, '2017-11-15 22:47:29'),
-(45, 27, 23, 'Me cayo mal el choclo q12e13', 4, '2017-11-15 22:47:59'),
-(46, 27, 23, 'Me cayo mal el choclo q12e13', 4, '2017-11-15 22:49:37'),
-(47, 27, 23, 'Me cayo mal el choclo q12e13', 4, '2017-11-15 22:50:06'),
-(48, 27, 23, 'Me cayo mal el queso q12e13', 4, '2017-11-15 22:52:20');
+(91, 43, 23, 'Poco Jamon', 1, '2017-11-18 00:53:39'),
+(92, 41, 23, 'Bien condimentada!!', 4, '2017-11-18 00:54:13');
 
 -- --------------------------------------------------------
 
@@ -92,8 +84,14 @@ CREATE TABLE `imagen` (
 --
 
 INSERT INTO `imagen` (`id_imagen`, `ruta`, `fk_id_producto`) VALUES
-(2, 'images/5a0c616ef00f7', 34),
-(5, 'images/5a0c8cd70f536', 35);
+(10, 'images/5a0f818a8ddcb', 38),
+(11, 'images/5a0f81db4718e', 39),
+(12, 'images/5a0f824587b57', 40),
+(13, 'images/5a0f827ee0aa8', 41),
+(14, 'images/5a0f829d00798', 42),
+(15, 'images/5a0f82e62109f', 43),
+(16, 'images/5a0f833b911ff', 44),
+(17, 'images/5a0f8369b8bc3', 45);
 
 -- --------------------------------------------------------
 
@@ -106,25 +104,22 @@ CREATE TABLE `producto` (
   `id_categoria` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `precio` int(11) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  `imagenes` varchar(50) NOT NULL
+  `descripcion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `id_categoria`, `nombre`, `precio`, `descripcion`, `imagenes`) VALUES
-(21, 11, 'Super Suprema', 200, 'Queso mozzarella, pepperoni, jamón, salchicha italiana, champiñones, cebolla, pimiento y aceitunas.', 'images/pizza1.png'),
-(22, 11, 'Chicken BBQ Suprema', 222, 'Queso mozzarella, champiñones, cebolla, fajitas de pollo, tocino y salsa BBQ.', 'images/pizza2.png'),
-(23, 11, 'Meat Suprema', 223, 'Queso mozzarella, pepperoni, jamón, tocino y salchicha italiana.', 'images/pizza3.png'),
-(24, 12, 'Suprema', 100, '¡Nuestra especialidad!. Lechuga, zanahoria, col morada, tomate, jamón, pepperoni, queso mozzarella, ', 'images/acom5.png'),
-(25, 14, 'Lasagna de Pollo o Carne', 130, 'Suave pasta rellana de queso mozzarella y ricotta, cubierta con salla de carne o fajitas de pollo. ', 'images/acom6.png'),
-(26, 13, 'Carne', 10, 'Carne picada', 'images/carne.png'),
-(27, 13, 'Humita', 13, 'Choclo', 'images/humita.png'),
-(30, 13, 'Jamon & Queso', 8, 'Jamon y Queso', 'images/j&q.png'),
-(34, 13, 'mateo', 12, 'asd', ''),
-(35, 13, 'LALALA', 123, 'ascjknwedcjkn', '');
+INSERT INTO `producto` (`id_producto`, `id_categoria`, `nombre`, `precio`, `descripcion`) VALUES
+(38, 11, 'Super Suprema', 200, 'Queso mozzarella, pepperoni, jamón, salchicha italiana, champiñones, cebolla, pimiento y aceitunas.'),
+(39, 11, ' Chicken BBQ Suprema', 222, 'Queso mozzarella, champiñones, cebolla, fajitas de pollo, tocino y salsa BBQ.'),
+(40, 11, ' Chicken BBQ Suprema', 222, 'Queso mozzarella, champiñones, cebolla, fajitas de pollo, tocino y salsa BBQ.'),
+(41, 13, 'Carne', 12, ' Carne picada'),
+(42, 13, 'Humita', 14, 'Choclo'),
+(43, 13, ' Jamon & Queso', 10, ' Jamon & Mucho Queso'),
+(44, 12, 'Suprema', 100, '¡Nuestra especialidad!. Lechuga, zanahoria, col morada, tomate, jamón, pepperoni, queso mozzarella,'),
+(45, 14, 'Lasagna de Pollo o Carne', 130, 'Suave pasta rellana de queso mozzarella y ricotta, cubierta con salla de carne o fajitas de pollo.');
 
 -- --------------------------------------------------------
 
@@ -146,8 +141,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `email`, `rol`) VALUES
 (23, 'Mateo', '$2y$10$U4SwekSWmU7vJ5aZD2ygAe1qifaDzV4DTSXGkA5CIqFXagX.iOiYC', 'mateo@gmail.com', 1),
-(24, 'jose', '$2y$10$FY2sXMtw4CeEDsJ6aCeeZ.fE0a3JMs7FkQLvnFMNzbb5lXq7lVzpm', 'jose@gmail.com', 2),
-(25, 'Juan Perez', '$2y$10$IkntnvQagtDdJMgYboyjAOMqPLEsAdwCpHQ/zsrLI9HlU3jEkIjHG', 'juan@gmail.com', 2);
+(24, 'jose', '$2y$10$FY2sXMtw4CeEDsJ6aCeeZ.fE0a3JMs7FkQLvnFMNzbb5lXq7lVzpm', 'jose@gmail.com', 1),
+(25, 'Juan Perez', '$2y$10$IkntnvQagtDdJMgYboyjAOMqPLEsAdwCpHQ/zsrLI9HlU3jEkIjHG', 'juan@gmail.com', 0);
 
 --
 -- Índices para tablas volcadas
@@ -201,19 +196,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
