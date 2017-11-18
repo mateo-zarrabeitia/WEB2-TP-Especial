@@ -34,7 +34,6 @@ $(document).ready(function() {
             success: function(textoCargado, status){
               cargarComentarios(id);
               $(".contenido").html(textoCargado);
-              $( "li" ).removeClass( "active" );
               $(".comentar").submit(function(event){
                   event.preventDefault();
                   guardarComentario();
@@ -91,6 +90,32 @@ $(document).ready(function() {
           for (var key in comentarios) {
               $('.comentarios').append(crearComentario(comentarios[key]));
           }
+          $(".borrarComentario").on("click", function(event){
+              event.preventDefault();
+              let id_comentario = $(this).attr("href")
+              let id_producto = $(this).attr("name")
+              let usuarioSesion = $(".usuario").val()
+              let usuarioRol = $(".usuarioRol").val()
+              let usuarioComentario = $(this).attr("rel")
+              if ((usuarioSesion === usuarioComentario)|| usuarioRol == 1 ) {
+                $.ajax({
+                      method: "DELETE",
+                      url: window.location.origin + window.location.pathname+"api/comentarios/"+id_comentario,
+                      data:"HTML"
+                    })
+                  .done(function(data) {
+                    $(".comentarios").empty();
+                    cargarComentarios(id_producto);
+                    alert("Se elimino correctamente");
+                  })
+                  .fail(function(data) {
+                      alert("No se ha podido eliminar el comentario");
+                  });
+              } else {
+                alert("No tiene permisos para borrar comentarios de otros Usuarios")
+              }
+
+          });
       })
       .fail(function() {
           $('.comentarios').append('<td>Imposible cargar los comentarios</td>');

@@ -4,7 +4,10 @@
       <div class="panel-heading">
         <h3 class="panel-title">Comentario de: {{email}}</h3>
           <div class="pull-rigth">
-            <p class="pull-right"><small>{{fecha}}</small></p>
+                <span class="pull-right"></span> <p class="pull-right"><small>{{fecha}}</small></p>
+          </div>
+          <div class="pull-right">
+            <a href="{{id_comentario}}" name="{{fk_id_producto}}" rel="{{email}}" class="borrarComentario"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
           </div>
       </div>
       <div class="panel-body">

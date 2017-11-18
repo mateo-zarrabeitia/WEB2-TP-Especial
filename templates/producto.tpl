@@ -55,6 +55,7 @@
               <input class="form-control id_producto" type="hidden" name="fk_id_producto" value="{$producto['id_producto']}">
               {/foreach}
               <input class="form-control usuario" type="hidden" name="usuario"value="{$usuario['USUARIO']}">
+              <input class="form-control usuarioRol" type="hidden" name="usuarioRol"value="{$usuario['ADMIN']}">
               <textarea class="form-control textocomentario" cols="10" rows="5" name="textocomentario" placeholder="Comentario" required></textarea>
 
               <div class="g-recaptcha" data-sitekey="6Le2QDkUAAAAAO6MwmA-RdmjpfCcOV97d5Nx_KPp"></div>

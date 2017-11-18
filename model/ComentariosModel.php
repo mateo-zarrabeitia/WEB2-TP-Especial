@@ -9,7 +9,7 @@
 		}
 
 		function getComentariosProducto($fk_id_producto) {
-			$sentencia = $this->db->prepare('SELECT `usuario`.`email`, `comentario`.`comentario`, `comentario`.`puntaje`, `comentario`.`fecha`
+			$sentencia = $this->db->prepare('SELECT `usuario`.`email`, `comentario`.`comentario`, `comentario`.`id_comentario`, `comentario`.`fk_id_producto`, `comentario`.`puntaje`, `comentario`.`fecha`
 																			FROM `comentario`
     																	LEFT JOIN `usuario` ON `comentario`.`fk_id_usuario` = `usuario`.`id_usuario`
 																			WHERE (`comentario`.`fk_id_producto` =? )');
