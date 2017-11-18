@@ -5,6 +5,7 @@
        <th>Email</th>
        <th>Administrador</th>
        <th>Permisos Admin</th>
+       <th>Eliminar</th>
      </tr>
    </thead>
    <tbody>
@@ -17,6 +18,7 @@
             <a href="darPermisoAdmin/{$usuario['id_usuario']}/1" name="boton" class="btn btn-default filtrado" role="button">Dar</a>
             <a href="darPermisoAdmin/{$usuario['id_usuario']}/0" name="boton" class="btn btn-default filtrado" role="button">Quitar</a>
         </td>
+        <td><a href="eliminarUsuario/{$usuario['id_usuario']}" name="boton" class="btn btn-default filtrado" role="button">Eliminar</a></td>
      </tr>
      {/foreach}
    </tbody>

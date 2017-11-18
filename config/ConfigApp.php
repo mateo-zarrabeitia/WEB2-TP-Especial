@@ -24,6 +24,7 @@ class ConfigApp{
       'adminListaProductos' => 'AdminController#listaProducto',
       'adminListaCategorias' => 'AdminController#listaCategoria',
       'adminUsuarios' => 'AdminController#adminUsuarios',
+      'eliminarUsuario' => 'AdminController#eliminarUsuario',
       'darPermisoAdmin' => 'AdminController#darPermisoAdmin',
       'crearCategoria' => 'AdminController#guardarCategoria',
       'crearProducto' => 'AdminController#guardarProducto',

@@ -65,6 +65,11 @@
       $usuarios = $this->modelUsuarios->setPermisoAdmin($id_usuario,$permiso);
       header('Location: '. HOME .'admin');
     }
+    public function eliminarUsuario($params){
+      $id_usuario = $params[0];
+      $usuarios = $this->modelUsuarios->deleteUsuario($id_usuario);
+      header('Location: '. HOME .'admin');
+    }
 
     public function guardarCategoria(){
       $nombre = $_POST['nombre'];

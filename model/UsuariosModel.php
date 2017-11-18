@@ -37,5 +37,9 @@ class UsuariosModel extends Model
     $sentencia->execute([$permiso,$id_usuario]);
   }
 
+  function deleteUsuario($id_usuario){
+    $sentencia = $this->db->prepare ('DELETE FROM usuario WHERE id_usuario = ?');
+    $sentencia->execute([$id_usuario]);
+  }
 }
  ?>
