@@ -2,17 +2,6 @@
   {include file="Admin/adminNav.tpl"}
 
   <div class="container contenidoAdmin">
-    <!-- <div class="wrapper">
-    <h2>Categorias</h2>
-    <ul class="list-group">
-      {foreach from=$categorias item=categoria}
-          <li class="list-group-item">
-                Nombre: {$categoria['nombre']} : {$categoria['descripcion']}
-            <a href="borrarCategoria/{$categoria['id_categoria']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-          </li>
-      {/foreach}
-    </ul>
-    </div> -->
     <div class="wrapper">
       <h2>Productos</h2>
         {foreach from=$categorias item=categoria}
@@ -42,14 +31,6 @@
                   {/foreach}
 
         {/foreach}
-      <!-- <ul class="list-group">
-        {foreach from=$productos item=producto}
-            <li class="list-group-item">
-                  Nombre: {$producto['nombre']} - Precio:{$producto['precio']}-Imagen:{$producto['imagenes']}-Id:{$producto['id_producto']}
-              <a href="borrarTarea/{$tarea['id_tarea']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-            </li>
-        {/foreach}
-      </ul> -->
       </div>
 
     </div>

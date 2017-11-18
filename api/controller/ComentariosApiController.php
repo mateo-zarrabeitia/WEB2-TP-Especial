@@ -50,8 +50,6 @@
           $textocomentario = $body->comentario;
           $puntaje = $body->puntaje;
           $fecha = date();
-          // return $fk_id_usuario;
-          // die();
     	    $this->model->setComentario($fk_id_producto,$fk_id_usuario, $textocomentario, $puntaje, $fecha);
           return $this->json_response("Se ha Creado", 200);
         }

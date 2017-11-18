@@ -41,7 +41,7 @@
           <h2>Para comentar debe estar logueado</h2>
           {else}
           <h2>Comentar</h2>
-            <p>Comentando como: <span class="user">{$usuario['USUARIO']}</span></p>
+            <label>Comentando como: <span class="user">{$usuario['USUARIO']}</span></label>
             <form id="formComentario"class="comentar" action="api/comentarios" method="POST">
               <select name="fk_puntaje" class="form-control puntaje" required>
                 <option value="" selected disabled hidden>Puntaje</option>
@@ -54,8 +54,10 @@
               {foreach from=$productos item=producto}
               <input class="form-control id_producto" type="hidden" name="fk_id_producto" value="{$producto['id_producto']}">
               {/foreach}
-              <input class="form-control usuario" type="hidden" name="usuario"value="{$usuario}">
+              <input class="form-control usuario" type="hidden" name="usuario"value="{$usuario['USUARIO']}">
               <textarea class="form-control textocomentario" cols="10" rows="5" name="textocomentario" placeholder="Comentario" required></textarea>
+
+              <div class="g-recaptcha" data-sitekey="6Le2QDkUAAAAAO6MwmA-RdmjpfCcOV97d5Nx_KPp"></div>
               <button class="btn btn-lg btn-primary btn-block comentar" type="submit">Comentar</button>
             </form>
             {/if}

@@ -90,11 +90,8 @@
       $precio = $_POST['precio'];
       $descripcion = $_POST['descripcion'];
       if($this->sonExtValida($_FILES['imagenes']['type'])) {
-        echo "SE GUARDO";
         $this->model->guardarProducto($id_categoria,$nombre,$precio,$descripcion,$rutaTempImagenes);
       }
-      echo "NO SE GUARDO";
-      die();
       header('Location: '. HOME .'admin');
     }
 

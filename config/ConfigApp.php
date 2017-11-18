@@ -19,7 +19,6 @@ class ConfigApp{
       'crearUsuario' => 'LoginController#crear',
       'verificarUsuario' => 'LoginController#verify',
       'logout' => 'LoginController#destroy',
-      'indexHome' => 'PizzaController#index',
       'adminAgregarCategoria' => 'AdminController#agregarCategoria',
       'adminAgregarProducto' => 'AdminController#agregarProducto',
       'adminListaProductos' => 'AdminController#listaProducto',

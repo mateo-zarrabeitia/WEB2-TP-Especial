@@ -33,9 +33,6 @@ $(document).ready(function() {
             "data-type" : "HTML",
             success: function(textoCargado, status){
               cargarComentarios(id);
-              let repeticion = window.setInterval("refreshComentarios",2000);
-              // setTimeout('refreshComentarios',2000);
-              // setInterval('refreshComentarios',2000);
               $(".contenido").html(textoCargado);
               $( "li" ).removeClass( "active" );
               $(".comentar").submit(function(event){
@@ -58,7 +55,6 @@ $(document).ready(function() {
               event.preventDefault();
                 let id = $(this).attr("name")
                 let dir = $(this).attr("href")
-                alert(window.location.origin + window.location.pathname+dir+id)
                 $.ajax({
                   "url" : window.location.origin + window.location.pathname+dir+id,
                   "method" : "GET",
@@ -84,13 +80,6 @@ $(document).ready(function() {
 
   $.ajax({url: 'js/templates/comentarios.mst'}).done(template => templateComentario = template);
 
-  function refreshComentarios(){
-    let id = $(this).attr("name")
-    alert(id);
-    window.clearInterval(repeticion);
-    cargarComentarios();
-  }
-
   function crearComentario(comentario){
       let rendered = Mustache.render(templateComentario, {arreglo:comentario});
       $('.comentarios').append(rendered);
@@ -99,7 +88,6 @@ $(document).ready(function() {
   function cargarComentarios(id){
       $.ajax("api/comentarios/producto/"+id)
       .done(function(comentarios) {
-        console.log(comentarios);
           for (var key in comentarios) {
               $('.comentarios').append(crearComentario(comentarios[key]));
           }
@@ -116,27 +104,19 @@ $(document).ready(function() {
        "comentario": $('.textocomentario').val(),
        "puntaje": $('.puntaje').val()
       }
-      // console.log(comentario);
+       console.log(JSON.stringify(comentario));
       $.ajax({
             method: "POST",
             url: "api/comentarios",
             data: JSON.stringify(comentario)
           })
         .done(function(data) {
-          console.log(JSON.stringify(comentario));
+          console.log(comentario);
         })
         .fail(function(data) {
-            console.log(data);
             let time = new Date().toLocaleString();
-            let coment ={
-             "email": $('.usuario').val(),
-             "comentario": $('.textocomentario').val(),
-             "puntaje": $('.puntaje').val(),
-             "fecha" : time
-            }
             $(".comentarios").empty();
             cargarComentarios($('.id_producto').val());
-            // crearComentario(coment);
             $("#formComentario")[0].reset();
         });
 
@@ -153,6 +133,7 @@ $(document).ready(function() {
       "data-type" : "HTML",
       success: function(textoCargado, status){
         $(".contenidoAdmin").html(textoCargado);
+
       }
     });
   });
