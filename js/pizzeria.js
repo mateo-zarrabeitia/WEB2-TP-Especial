@@ -111,13 +111,12 @@ $(document).ready(function() {
             data: JSON.stringify(comentario)
           })
         .done(function(data) {
-          console.log(comentario);
+          $(".comentarios").empty();
+          cargarComentarios($('.id_producto').val());
+          $("#formComentario")[0].reset();
         })
         .fail(function(data) {
-            let time = new Date().toLocaleString();
-            $(".comentarios").empty();
-            cargarComentarios($('.id_producto').val());
-            $("#formComentario")[0].reset();
+            alert("No se ha podido crear el comentario");
         });
 
 
